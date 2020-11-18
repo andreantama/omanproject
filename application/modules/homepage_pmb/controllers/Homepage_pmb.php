@@ -163,11 +163,13 @@ class Homepage_pmb extends CI_Controller {
 		$this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
 		$this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
 		$this->form_validation->set_rules('no_hp', 'No Handphone', 'numeric|is_unique[tbl_pmb.NO_HANDPHONE]');
+		$this->form_validation->set_rules('pendidikan', 'Pendidikan', 'required');
         if($this->form_validation->run() == FALSE){
         	$this->session->set_flashdata('notif', validation_errors());
 			$this->session->set_flashdata('clr', 'danger');
         	redirect('homepage_pmb/daftarPMB');
-        }
+		}
+		$angkatan = $this->db->where("active", 1)->get("tbl_angkatan")->row()->angkatan;
 		$data_insert = array(
 			'NAMA' => $this->input->post('nama', TRUE),
 			'JK' => $this->input->post('jk', TRUE),
@@ -178,7 +180,9 @@ class Homepage_pmb extends CI_Controller {
 			'NAMA_IBU' => $this->input->post('nama_ibu', TRUE),
 			'NO_HANDPHONE' => $this->input->post('no_hp', TRUE),
 			'TGL_PMB' => $this->jariprom_tools->tglSekarang(),
-			'WKT_PMB' => $this->jariprom_tools->wktSekarang()
+			'WKT_PMB' => $this->jariprom_tools->wktSekarang(),
+			'ANGKATAN' => $angkatan,
+			'PENDIDIKAN' => $this->input->post('pendidikan'),
 		);
 		$this->homepage_pmb->tambahData($data_insert,'tbl_pmb');
 		$id_pmb = $this->db->insert_id();

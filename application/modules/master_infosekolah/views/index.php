@@ -107,6 +107,13 @@
 						<input type="text" name="google" value="<?= $detail->GOOGLE ?>" class="form-control"/>
 
 					</div>
+					<div class="form-group">
+
+						<label>Angakatan Aktif</label>
+
+						<input type="text" name="angkatan" value="<?= $detailAngkatan->angkatan ?>" class="form-control"/>
+
+					</div>
 
 						</div>
 

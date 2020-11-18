@@ -12,10 +12,12 @@ class Master_infosekolah extends MY_Admin {
 	function index(){
 		$this->load->library('jariprom_tools');
 		$detail_website = $this->master_infosekolah->tampilData('tbl_info_sekolah','*', array('ID_INFO' => 1), TRUE);
+		$detail_angkatan = $this->master_infosekolah->tampilData('tbl_angkatan','*', array('active' => 1), TRUE);
 		$data['judul_page'] = 'Informasi Website';
 		$data['des_page'] = '';
 		$data['page'] = 'index';
 		$data['detail'] = $detail_website;
+		$data['detailAngkatan'] = $detail_angkatan;
 		$data['modul_active'] = 'master_infoweb';
 		$this->load->view($this->template,$data);
 	}
@@ -26,11 +28,35 @@ class Master_infosekolah extends MY_Admin {
 		$this->form_validation->set_rules('nama_sekolah', 'Nama Sekolah', 'required');
 		$this->form_validation->set_rules('no_telepon', 'No Telepon', 'numeric');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
+		$this->form_validation->set_rules('angkatan', 'Angkatan', 'required');
 		if($this->form_validation->run() == FALSE){
         	$this->session->set_flashdata('notif', validation_errors());
 			$this->session->set_flashdata('clr', 'danger');
         	redirect('master_infosekolah');
-        }
+		}
+		//angkatan
+		$sqlAngkatan = $this->db->where("angkatan", $this->input->post("angkatan"))->get("tbl_angkatan");
+		if($sqlAngkatan->num_rows() != 0){
+			$data =[
+				"active" => 0
+			];
+			$this->db->update("tbl_angkatan", $data);
+			$this->db->where("angkatan", $this->input->post("angkatan"));
+			$data =[
+				"active" => 1
+			];
+			$this->db->update("tbl_angkatan", $data);
+		} else {
+			$data =[
+				"active" => 0
+			];
+			$this->db->update("tbl_angkatan", $data);
+			$dataa =[
+				"angkatan" => $this->input->post("angkatan"),
+				"active" => 1
+			];
+			$this->db->insert("tbl_angkatan",$dataa);
+		}
         $detail_website = $this->master_infosekolah->tampilData('tbl_info_sekolah','*', array('ID_INFO' => 1), TRUE);
         if($_FILES["file_foto"]["error"] != 0){
 			$image = $detail_website->LOGO;

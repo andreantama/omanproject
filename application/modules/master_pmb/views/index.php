@@ -1,6 +1,30 @@
 <div class="row">
 
 <div class="col-md-12">
+<div class="panel panel-default">
+
+	<div class="panel-body">
+	<form action="" method="GET">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<select name="pendidikan" id="" class="form-control">
+						<option value="SMP">SMP</option>
+						<option value="SD">SD</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<input type="submit" name="submitcari" class="btn btn-primary" value="Filter">
+			</div>
+		</div>
+	</form>
+	</div>
+</dov>
+</div>
+<div class="col-md-12">
 
 <div class="panel panel-default">
 
@@ -64,7 +88,7 @@
 
 $(document).ready(function() {
 
-var base_url = "<?php echo base_url("master_pmb/getPmb") ?>";
+var base_url = "<?php echo base_url("master_pmb/getPmb/SMP") ?>";
 
 $('#example').dataTable({
 

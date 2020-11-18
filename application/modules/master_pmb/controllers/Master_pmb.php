@@ -14,7 +14,9 @@ class Master_pmb extends MY_Admin {
 		$data['des_page'] = '';
 		$data['page'] = 'index';
 		$data['modul_active'] = 'master_pmb';
-		$data['active'] = $this->master_pmb->tampilData('tbl_set_pmb','*',array('ID_SET_PMB' => 1), TRUE);
+		$sqlWhere['ID_SET_PMB'] = 1;
+		
+		$data['active'] = $this->master_pmb->tampilData('tbl_set_pmb','*',$sqlWhere, TRUE);
 		$this->load->view($this->template,$data);
 	}
 
@@ -111,7 +113,7 @@ class Master_pmb extends MY_Admin {
         redirect('master_pmb');
 	}
 
-	function getPmb(){
+	function getPmb($pendidikan = null){
 		if($this->input->is_ajax_request()){
 			$this->load->library('jariprom_tools');
 			$this->master_pmb->setTableDatabase('tbl_pmb');
@@ -119,6 +121,11 @@ class Master_pmb extends MY_Admin {
 			$this->master_pmb->setOrderColumn(array('NAMA',NULL,NULL,NULL));
 			$this->master_pmb->setOrderId(array('ID_PMB','DESC'));
 			$this->master_pmb->setSearchQuery(array('NAMA','NO_HANDPHONE'));
+			$sqlWhere = array();
+			// if($pendidikan  != null){
+			// 	$sqlWhere['PENDIDIKAN'] = $pendidikan;
+			// }
+			$this->master_pmb->setWhereColumn($sqlWhere);
 			$fetch_data = $this->master_pmb->generateDatatables();
 			$data = array();
 			foreach($fetch_data as $row){
