@@ -7,10 +7,20 @@ class Master_login extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_master_login','master_login');
+		
     }
 	
 	function index(){
+		$this->session->set_userdata("a" , "b");
+		echo $this->session->userdata("a");
 		$this->load->view('index');
+		
+	}
+	public function cobaya()
+	{
+		echo $this->session->userdata("a");
+		//echo phpinfo();
+		
 	}
 	
 	function loginSubmit(){
@@ -19,17 +29,20 @@ class Master_login extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$level = $this->input->post('level', TRUE);
+		
 		if($this->form_validation->run() == FALSE){
 			if($level != 1){
 				$this->session->set_flashdata('notif', validation_errors());
 				$this->session->set_flashdata('clr', 'danger');
 				redirect('master_login');
+				
 			}
 			else{
 				$this->session->set_flashdata('notif', validation_errors());
 				$this->session->set_flashdata('clr', 'info');
 				redirect('homepage_loginsiswa');
 			}
+			
 		}
 		if($level == 1){
 			$cek = $this->master_login->tampilData('tbl_siswa','NO_SISWA, NIPD, PASSWORD',array('NIPD' => $this->input->post('username', TRUE)),TRUE);
@@ -137,6 +150,7 @@ class Master_login extends CI_Controller {
 			}
 		}
 		elseif($level == 5){
+			
 			$cek = $this->master_login->tampilData('tbl_admin','ID_ADMIN, USERNAME, LEVEL, PASSWORD',array('USERNAME' => $this->input->post('username', TRUE)),TRUE);
 			if($cek){
 				if(password_verify($this->input->post('password', TRUE), $cek->PASSWORD)){
@@ -146,8 +160,10 @@ class Master_login extends CI_Controller {
 						'user_string' => 'admin',
 						'level_admin' => $cek->LEVEL // 2 = Admin Master Data, 3 = Admin PPDB, 4 = Admin Web
 					);
+					
 					$this->session->set_userdata($data);
-	            	redirect('master_dashboard');
+					redirect('master_dashboard');
+					//die();
 				}
 				else{
 					$this->session->set_flashdata('notif', 'Password yang Anda masukkan salah.');
