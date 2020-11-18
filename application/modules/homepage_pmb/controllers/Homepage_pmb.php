@@ -71,6 +71,7 @@ class Homepage_pmb extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('jariprom_tools');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validaiton->set_rules("pendidikan", "Pendidikan", "required");
 		$this->form_validation->set_rules('no_hp', 'No Handphone '.$this->input->post('no_hp', TRUE), 'required|numeric|is_unique[tbl_pmbdaftarulang.NO_HANDPHONE]');
 		$this->form_validation->set_message('is_unique', '{field} sudah pernah Anda daftarkan sebelumnya. Jika ada kesalahan input hubungi Admin.');
 		if($this->form_validation->run() == FALSE){
@@ -99,6 +100,7 @@ class Homepage_pmb extends CI_Controller {
 			'NAMA' => $this->input->post('nama', TRUE),
 			'NO_HANDPHONE' => $this->input->post('no_hp', TRUE),
 			'BERKAS' => $dokumen,
+			'PENDIDIKAN' => $this->input->post('pendidikan', TRUE),
 			'TGL_PMB' => $this->jariprom_tools->tglSekarang(),
 			'WKT_PMB' => $this->jariprom_tools->wktSekarang()
 		);

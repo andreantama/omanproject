@@ -35,6 +35,13 @@
 				<input type="text" class="form-control" name="nama"/>
 			</div>
 			<div class="form-group">
+				<label>Jenjang Pendidikan</label>
+				<select name="pendidiKAN" id="" class="form-control" required>
+					<option value="SD">SD</option>
+					<option value="SMP">SMP</option>
+				</select>
+			</div>
+			<div class="form-group">
 				<label>No Handphone</label>
 				<input type="text" class="form-control" name="no_hp"/>
 			</div>
