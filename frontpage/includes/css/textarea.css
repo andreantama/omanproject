@@ -1,0 +1,74 @@
+/* 
+    Document   : textarea
+    Created on : Apr 30, 2013, 10:21:17 AM
+    Author     : mogimogi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.textarea {
+	font-family: 'VAGROUND', luxisans, arial, helvetica, sans-serif; font-size: 12px; color: #000000; line-height: 200%;
+}
+.textarea * {
+	font-family: inherit; /*margin-bottom: 20px; */font-size: 12px;  line-height: 1.5;
+}
+
+.textarea a:hover {
+	text-decoration: underline;
+}
+
+.textarea ul {
+	list-style: disc; margin: 0px 10px 10px 25px;
+}
+.textarea ol {
+	list-style: decimal; margin: 0px 0px 10px 50px;
+}
+.textarea ol > ol{
+	list-style: lower-alpha;
+}
+.textarea li {
+	margin:0px 0px 5px 24px;
+}
+.textarea strong {
+	font-weight: bold;
+}
+.textarea em {
+	font-style: italic;
+}
+.textarea h1 {
+	font-size: 24px;
+}
+.textarea h2 {
+	font-size: 22px;
+	text-shadow:none;
+	font-weight:bold;
+}
+.textarea h3 {
+	font-size: 20px;
+}
+.textarea h4 {
+	font-size: 18px;
+}
+.textarea h5 {
+	font-size: 16px;
+}
+.textarea h6 {
+	font-size: 14px;
+}
+/*
+.textarea table {
+	border: 1px solid;
+}
+.textarea th {
+	border: 1px solid; font-weight: bold; background-color:#424242; color:#fff;
+} 
+.textarea td {
+	border:1px solid;
+	padding-left: 5px;
+} */
+#news p.readmore {
+	margin-top: 10px;
+}
+#news p.readmore a:hover {
+	text-decoration: underline;
+}

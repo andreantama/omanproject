@@ -1,0 +1,69 @@
+/* 
+    Document   : style
+    Created on : Feb 12, 2013, 11:32:54 AM
+    Author     : mogimogi
+	Company    : iGlobal
+                 http://www.iglobal.co.id
+    Description:
+       Style for gallery Component
+*/
+
+
+#gallery-container {position:relative; margin-left:-20px; margin-top:50px; width:685px; height:auto;}
+#gallery-container h1 {font-size: 40px;}
+#gallery-container .loader {display:none; position:absolute; width:100%; height:100%; top:0px;left:0px;}
+#gallery-container .loader .bg {position:absolute; width:100%; height:100%; top:0px; left:0px; background-color:#fff;
+	opacity:0.5; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+}
+#gallery-container .loader .animation {position:absolute; width:100%; height:100%; top:0px; left:0px; background:url('images/loader.gif') center center no-repeat;}
+
+
+#thumbnail-container {font-family:calibri;}
+#thumbnail-back {position:absolute; display:block; top:-20px; left:25px; width:auto; height:30px; padding:4px 0px 0px 25px; background:url('images/back.png') top left no-repeat; font-family:calibri, tahoma, arial; font-size:14px; color:#222;}
+#thumbnail-back:hover {font-weight:bold;}
+#thumbnail-container {position:relative; width:100%; height:900px; overflow:hidden;}
+#thumbnail-container .rel {position:absolute; width:auto; height:auto; top:50px;}
+#thumbnail-container .page {position:relative; padding: 10px 20px 10px 10px; height:auto; float:left;}
+#thumbnail-container .page:last-child {clear:right;}
+#thumbnail-container .page .thumbnail {position:relative; float:left; width:100px; height:100px; margin:20px 18px; cursor:pointer;}
+#thumbnail-container .page .thumbnail:last-child {clear:right;}
+
+#thumbnail-container .page .thumbnail .title {text-align:center; font-sie:12px;}
+#thumbnail-container .page .thumbnail:hover .title {font-weight:bold;}
+#thumbnail-container .page .thumbnail.folder {background:url('images/album.png') center center no-repeat;}
+#thumbnail-container .page .thumbnail.folder .title {position: absolute; top:100px; left:0px; width:100px;}
+#thumbnail-container .page .folder h3 {font-size: 18px; font-weight: bold; color:#0a4eb8; text-transform:capitalize;}
+#thumbnail-container .page .thumbnail.file {text-align:center;}
+#thumbnail-container .page .thumbnail.file img {border-bottom:3px groove #ccc; border-right:3px groove #ccc; border-top:1px groove #ccc; border-left:1px groove #ccc; padding:3px;}
+#thumbnail-container .page .thumbnail.file .title {margin-top:10px;}
+
+#thumbnail-container .pagination {position:absolute; top:15px; left:30px;}
+#thumbnail-container .pagination a {display:inline-block; padding:3px 7px; margin:5px 3px; background-color:#000; color:#fff;}
+#thumbnail-container .pagination a.current {background-color:#f00;}
+#thumbnail-container .pagination a:hover {background-color:#f00;}
+
+#pagination-container {position:relative; width:100%; height:50px;}
+
+
+#gallery-popup {z-index:20; display:none; position:fixed; width:100%; height:100%; top:0px; left:0px;}
+#gallery-popup .bg {position:absolute; width:100%; height:100%; top:0px; left:0px; background-color:#000;
+	opacity:0.8; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	filter: alpha(opacity=80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+}
+#gallery-popup .loader {position:absolute; width:100%; height:100%; top:0px; left:0px; background:url('images/loader2.gif') center center no-repeat;}
+#gallery-popup .image-container {display:none; position:absolute; border:3px groove #000; background-color:#fff;}
+#gallery-popup .image-container .image {position:relative; width:100%; height:100%; }
+#gallery-popup .image-container .image img {}
+#gallery-popup .image-container .navigation {display:none; position:absolute; padding:10px; background-color:#000; color:#fff; font-family:verdana; font-size:20px; font-weight:bold; text-transform:uppercase;}
+#gallery-popup .image-container .navigation.next {bottom:0px; right:0px;}
+#gallery-popup .image-container .navigation.prev {bottom:0px; left:0px;}
+/*
+#gallery-popup .image-container:hover .navigation {display:block;}
+*/
