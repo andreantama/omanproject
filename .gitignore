@@ -1,4 +1,10 @@
 frontpage/thumb/
 assets/
 subdomain/
+application/config/database.php
+application/third_party/Router.php
+assets-admin/
+frontpage/
+system/
+.gitignore
 
