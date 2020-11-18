@@ -15,5 +15,6 @@
 <div class="list-group" style="font-size: 20px;">
   <a href="<?= base_url('homepage_pmb/cekPMB') ?>" class="list-group-item"><i class="fa fa-list fa-fw"></i> Cek & Cetak Pendaftaran</a>
   <a href="<?= base_url('homepage_pmb/daftarPMB'); ?>" class="list-group-item"><i class="fa fa-users fa-fw"></i> Pendaftaran Baru</a>
+  <a href="<?= base_url('homepage_pmb/buktitransfer'); ?>" class="list-group-item"><i class="fa fa-users fa-fw"></i> Upload Bukti Transfer</a>
   <a href="<?= base_url(); ?>" class="list-group-item"><i class="fa fa-globe fa-fw"></i> Kembali ke situs mutiara cendekia</a>
 </div>

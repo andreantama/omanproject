@@ -13,7 +13,13 @@ class Homepage_pmb extends CI_Controller {
 		$data['page'] = 'homepage_pmb';
 		$this->load->view($this->template, $data);
 	}
-
+	public function buktitransfer()
+	{
+		$data['page'] = 'buktitransfer';
+		//$data['active'] = $this->homepage_pmb->tampilData('tbl_set_pmb','*',array('ID_SET_PMB' => 1), TRUE);
+		$this->load->view($this->template, $data);
+	}
+	
 	function daftarPMB(){
 		$data['page'] = 'daftar';
 		$data['active'] = $this->homepage_pmb->tampilData('tbl_set_pmb','*',array('ID_SET_PMB' => 1), TRUE);
@@ -66,7 +72,44 @@ class Homepage_pmb extends CI_Controller {
 		$data['detail'] = $this->db->query('SELECT * FROM tbl_info_sekolah')->row();
 		$this->load->view('cetak',$data);
 	}
-
+	public function buktiTransferSubmit()
+	{
+		$this->load->library('form_validation');
+		$this->load->library('jariprom_tools');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		if($this->form_validation->run() == FALSE){
+        	$this->session->set_flashdata('notif', validation_errors());
+			$this->session->set_flashdata('clr', 'danger');
+        	redirect('homepage_pmb/buktitransferr');
+        }
+		$config['upload_path'] = './assets/buktitransfer';
+		$config['allowed_types'] = 'jpg|png|jpeg|JPEG';
+		$config['max_size'] = '50000048';
+		$config['encrypt_name'] = TRUE;
+		$config['file_ext_tolower'] = TRUE;
+		$config['detect_mime'] = TRUE;
+		$this->load->library('upload', $config);
+		if($this->upload->do_upload('dokumen')){
+			$dokumen = $this->upload->data('file_name');
+			//TODO ADD TO TABLE
+		}
+		else{
+			$this->session->set_flashdata('notif', $this->upload->display_errors());
+			$this->session->set_flashdata('clr', 'danger');
+			redirect('homepage_pmb/buktitransfer');
+			exit();
+		}
+		$data_insert = array(
+			'NAMA' => $this->input->post('nama', TRUE),
+			'BERKAS' => $dokumen,
+			'TGL_PMB' => $this->jariprom_tools->tglSekarang(),
+			'WKT_PMB' => $this->jariprom_tools->wktSekarang()
+		);
+		$this->homepage_pmb->tambahData($data_insert,'tbl_pmbbuktitransfer');
+		$this->session->set_flashdata('notif', "Bukti Transfer Berhasil Di Upload");
+		$this->session->set_flashdata('clr', 'success');
+		redirect('homepage_pmb/buktitransfer');
+	}
 	function daftarPmbUlangSubmit(){
 		$this->load->library('form_validation');
 		$this->load->library('jariprom_tools');
