@@ -6,18 +6,45 @@
 	<div class="panel-body">
 	<form action="" method="GET">
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="form-group">
+				<label for="">Jenjang Pendidikan</label>
 					<select name="pendidikan" id="" class="form-control">
-						<option value="SMP">SMP</option>
-						<option value="SD">SD</option>
+						<option value="SMP" <?php if($searchPendidikan == "SMP") { echo "selected"; }?>>SMP</option>
+						<option value="SD" <?php if($searchPendidikan == "SD") { echo "selected"; }?>>SD</option>
 					</select>
 				</div>
 			</div>
-		</div>
+			<div class="col-md-3">
+				<div class="form-group">
+				<label for="">Angkatan</label>
+					<select name="angkatan" id="" class="form-control">
+					<?php foreach($angkatan as $rowAng):?>
+						<option value="<?php echo $rowAng->angkatan;?>" <?php if($searchAngkatan == $rowAng->angkatan) { echo "selected"; }?>><?php echo $rowAng->angkatan;?></option>
+					<?php endforeach;?>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Awal Tanggal</label>
+					<input type="text" name="searchStart" id="idSearchStart" readonly="" class="form-control" value="<?php if($searchStart != null) { echo $searchStart; }?>">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Akhir Tanggal</label>
+					<input type="text" name="searchEnd" id="idSearchEnd" readonly="" class="form-control" value="<?php if($searchEnd != null) { echo $searchEnd; }?>">
+					</div>
+				</div>
+			</div>
+			
 		<div class="row">
 			<div class="col-md-12">
 				<input type="submit" name="submitcari" class="btn btn-primary" value="Filter">
+				<?php if($searchStatus == true):?>
+					<a href="<?php echo base_url("master_pmb/master_pmb"); ?>" class="btn btn-danger"> Reset Filter</a>
+				<?php endif;?>
 			</div>
 		</div>
 	</form>
@@ -87,8 +114,21 @@
 <script>
 
 $(document).ready(function() {
+	$('#idSearchStart').datepicker({
 
-var base_url = "<?php echo base_url("master_pmb/getPmb/SMP") ?>";
+		autoclose: true,
+
+		format: 'yyyy-mm-dd'
+
+	});
+	$('#idSearchEnd').datepicker({
+
+autoclose: true,
+
+format: 'yyyy-mm-dd'
+
+});
+var base_url = "<?php echo base_url("master_pmb/getPmb/$searchPendidikan/$searchAngkatan/$searchStart/$searchEnd") ?>";
 
 $('#example').dataTable({
 
