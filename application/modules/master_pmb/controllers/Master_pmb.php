@@ -135,7 +135,7 @@ class Master_pmb extends MY_Admin {
         redirect('master_pmb');
 	}
 
-	function getPmb($pendidikan = null, $angkatan = null){
+	function getPmb($pendidikan = null, $angkatan = null, $startDate = null,  $endDate = null){
 		if($this->input->is_ajax_request()){
 			$this->load->library('jariprom_tools');
 			$this->master_pmb->setTableDatabase('tbl_pmb');
@@ -144,14 +144,22 @@ class Master_pmb extends MY_Admin {
 			$this->master_pmb->setOrderId(array('ID_PMB','DESC'));
 			$this->master_pmb->setSearchQuery(array('NAMA','NO_HANDPHONE'));
 			$sqlWhere = array();
-			if($pendidikan  != null){
+			if($pendidikan  != null && $pendidikan  != 'null' && $pendidikan  != "null"){
 				$sqlWhere['PENDIDIKAN'] = $pendidikan;
 			}
-			if($angkatan  != null){
+			if($angkatan  != null && $angkatan  != 'null' && $angkatan  != "null"){
 				$sqlWhere['ANGKATAN'] = $angkatan;
 			}
+			
 			$this->master_pmb->setWhereColumn($sqlWhere);
+			if($startDate != null && $endDate != null){
+				//$sqlWhere['TGL_PMB'] =  "BETWEEN $startDate AND $endDate";
+				$this->db->where("TGL_PMB BETWEEN '".$startDate."' AND '".$endDate."'");
+			}
 			$fetch_data = $this->master_pmb->generateDatatables();
+			
+			//echo $this->db->last_query();
+			//die();
 			$data = array();
 			foreach($fetch_data as $row){
 	            $sub_array = array();

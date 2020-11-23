@@ -10,6 +10,7 @@
 				<div class="form-group">
 				<label for="">Jenjang Pendidikan</label>
 					<select name="pendidikan" id="" class="form-control">
+						<option value="null">--Pilih Pencarian--</option>
 						<option value="SMP" <?php if($searchPendidikan == "SMP") { echo "selected"; }?>>SMP</option>
 						<option value="SD" <?php if($searchPendidikan == "SD") { echo "selected"; }?>>SD</option>
 					</select>
@@ -19,6 +20,7 @@
 				<div class="form-group">
 				<label for="">Angkatan</label>
 					<select name="angkatan" id="" class="form-control">
+					<option value="null">--Pilih Pencarian--</option>
 					<?php foreach($angkatan as $rowAng):?>
 						<option value="<?php echo $rowAng->angkatan;?>" <?php if($searchAngkatan == $rowAng->angkatan) { echo "selected"; }?>><?php echo $rowAng->angkatan;?></option>
 					<?php endforeach;?>
