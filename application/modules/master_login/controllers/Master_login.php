@@ -12,14 +12,13 @@ class Master_login extends CI_Controller {
 	
 	function index(){
 		$this->session->set_userdata("a" , "b");
-		echo $this->session->userdata("a");
+		//echo $this->session->userdata("a");
 		$this->load->view('index');
 		
 	}
 	public function cobaya()
 	{
-		echo $this->session->userdata("a");
-		//echo phpinfo();
+
 		
 	}
 	
