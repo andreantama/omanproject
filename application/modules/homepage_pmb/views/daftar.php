@@ -21,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				<label>Jenjang Pendidikan</label>
-				<select name="pendidiKAN" id="" class="form-control" required>
+				<select name="pendidikan" id="" class="form-control" required>
 					<option value="SD">SD</option>
 					<option value="SMP">SMP</option>
 				</select>
