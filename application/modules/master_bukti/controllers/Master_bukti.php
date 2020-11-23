@@ -23,7 +23,7 @@ class Master_bukti extends MY_Admin {
         if($this->input->is_ajax_request()){
             $this->load->library('jariprom_tools');
             $this->master_buktipendaftaran->setTableDatabase('tbl_pmbbuktitransfer');
-			$this->master_buktipendaftaran->setSelectColumn(array('ID','NAMA','BERKAS'));
+			$this->master_buktipendaftaran->setSelectColumn(array('ID','NAMA','BERKAS', 'TGL_PMB', 'WKT_PMB'));
 			$this->master_buktipendaftaran->setOrderColumn(array('NAMA',NULL,NULL,NULL));
 			$this->master_buktipendaftaran->setOrderId(array('ID','DESC'));
 			$this->master_buktipendaftaran->setSearchQuery(array('NAMA'));
@@ -34,7 +34,10 @@ class Master_bukti extends MY_Admin {
 			foreach($fetch_data as $row){
 	            $sub_array = array();
 	            $sub_array[] = $row->NAMA;
-	            $sub_array[] = '<img src='.base_url("assets/buktitransfer/".$row->BERKAS).' class="img-thumbnail">';
+				$sub_array[] = '<img src='.base_url("assets/buktitransfer/".$row->BERKAS).' class="img-thumbnail">';
+				$sub_array[] = '<a href='.base_url("assets/buktitransfer/".$row->BERKAS).' class="btn btn-info" target="_blank">Download File</a>';
+				$sub_array[] = $row->TGL_PMB;
+				$sub_array[] = $row->WKT_PMB;
 	            $data[] = $sub_array;
 	       }
 	       $output = array(

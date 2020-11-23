@@ -28,8 +28,8 @@
 
                 <th>Berkas</th>
 				<th></th>
-				<th></th>
-
+				<th>Tanggal</th>
+				<th>Waktu</th>
             </tr>
 
         </thead>
